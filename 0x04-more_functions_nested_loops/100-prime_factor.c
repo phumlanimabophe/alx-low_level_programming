@@ -5,7 +5,7 @@
  *
  * Return: Always 0 (Success)
  */
-int prime_factor(void)
+int main(void)
 {
 	unsigned long int n = 612852475143;
 	unsigned long int largest_prime = 2;
