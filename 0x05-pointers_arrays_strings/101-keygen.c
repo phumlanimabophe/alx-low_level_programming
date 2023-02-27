@@ -6,7 +6,7 @@ int main(void)
 {
     const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     const int length = 10;
-    char password[length + 1];
+    char *password = malloc(length + 1);
 
     srand(time(NULL));
 
@@ -18,6 +18,8 @@ int main(void)
     password[length] = '\0';
 
     printf("%s\n", password);
+
+    free(password);
 
     return 0;
 }
