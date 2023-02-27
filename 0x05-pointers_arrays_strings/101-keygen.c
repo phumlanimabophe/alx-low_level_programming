@@ -1,24 +1,23 @@
-#include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-/**
- * main - Entry point
- *
- * Return: Always 0 (Success)
- */
 int main(void)
 {
-	unsigned long int n = 612852475143;
-	unsigned long int largest_prime = 2;
+    const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const int length = 10;
+    char password[length + 1];
 
-	while (n > largest_prime)
-	{
-		if (n % largest_prime == 0)
-			n /= largest_prime;
-		else
-			largest_prime++;
-	}
+    srand(time(NULL));
 
-	printf("%lu\n", largest_prime);
+    for (int i = 0; i < length; i++) {
+        int index = rand() % (sizeof(charset) - 1);
+        password[i] = charset[index];
+    }
 
-	return (0);
+    password[length] = '\0';
+
+    printf("%s\n", password);
+
+    return 0;
 }
