@@ -6,6 +6,7 @@
  *
  * @s: This pointer point to a char or string
  *
+ *
  */
 
 void puts2(char *s)
