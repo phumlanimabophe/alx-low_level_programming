@@ -1,28 +1,26 @@
 #include "main.h"
 
 /**
- *puts_half - function that prints half of a string, followed by a new line.
+ * reverse_array - Write a function that reverses the content of an array of
+ * integers.
  *
- *@str: This is the input string
+ * @a: This is the input array
+ * @n: This is the positions have the array
+ * Return: void
  */
-void puts_half(char *str)
+void reverse_array(int *a, int n)
 {
-	int index, half;
+	int i, last;
 
-	index = 0;
-	while (str[index] != '\0')
-		index++;
-
-	half = index / 2;
-
-	if (index % 2 == 1)
-		half++;
-
-	while (half < index)
+	last = n - 1;
+	for (i = 0; i < n / 2; i++)
 	{
-		_putchar(str[half]);
-		half++;
-	}
-	_putchar('\n');
-}
+		int start, end;
 
+		start = a[i];
+		end = a[last];
+		a[i] = end;
+		a[last] = start;
+		last--;
+	}
+}

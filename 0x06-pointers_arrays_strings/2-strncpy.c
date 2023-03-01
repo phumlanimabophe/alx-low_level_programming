@@ -1,20 +1,24 @@
 #include "main.h"
 
 /**
- * print_rev - Prints a string in reverse.
- * @s: string to be reserved.
- * Return void
+ * _strncpy - Write a function that copies a string, with number of bytes
+ * @dest: This is the output dest
+ * @src: This is the input source
+ * @n: This is the number of bytes to copy
+ *Return: Copied string with the number of bytes
  */
-void print_rev(char *s)
+
+char *_strncpy(char *dest, char *src, int n)
 {
 	int index;
 
-	for (index = 0; s[index] != '\0'; index++)
-		;
-	for (index = index - 1; s[index] != '\0'; index--)
+	for (index = 0; index < n && src[index] != '\0' ; index++)
 	{
-		_putchar(s[index]);
+		dest[index] = src[index];
 	}
-	_putchar('\n');
+	for (; index  < n; index++)
+	{
+		dest[index] = '\0';
+	}
+	return (dest);
 }
-

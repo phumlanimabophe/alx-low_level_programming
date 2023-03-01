@@ -1,24 +1,24 @@
 #include "main.h"
 
 /**
- * puts2 - Write a function that prints every other character of a string, 
- *         starting with the first character, followed by a new line.
+ * string_toupper - Write a function that changes all lowercase letters of a
+ * string to uppercase.
  *
- * @s: This pointer point to a char or string
+ * @hi: This is the input string
  *
- *
+ * Return: Lowercase changed to uppercase of the string
  */
-
-void puts2(char *s)
+char *string_toupper(char *hi)
 {
-	int a;
+	int index = 0;
+	int desp = 'a' - 'A';
 
-	for (a = 0; s[a] != '\0'; a++)
+	for (index = 0; hi[index] != '\0'; ++index)
 	{
-		if (a % 2 == 0)
+		if (hi[index] >= 'a' && hi[index] <= 'z')
 		{
-			_putchar(s[a]);
+			hi[index] = hi[index] - desp;
 		}
 	}
-	_putchar('\n');
+	return (hi);
 }

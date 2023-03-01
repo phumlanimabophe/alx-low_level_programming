@@ -1,17 +1,26 @@
 #include "main.h"
 
 /**
- * swap_int - swaps the values of int a and int b
- * @a: first int to swap
- * @b: second int to swap
- *
- * Return: void
+ * _strncat - Write a function that ...
+ * @dest: This is the output  dest
+ * @src: This is the input src
+ * @n: This is the number bytes fro src
+ * Return: This is my return
  */
-void swap_int(int *a, int *b)
+char *_strncat(char *dest, char *src, int n)
 {
-	int c;
+	int index, count;
 
-	 c = *a;
-	*a = *b;
-	*b = c;
+	for (index = 0; dest[index] != '\0'; index++)
+		;
+	for (count = 0; count < n && src[count] != '\0'; count++)
+	{
+		dest[index] = src[count];
+		index++;
+	}
+	if (count < n)
+	{
+	dest[index] = '\0';
+	}
+	return (dest);
 }
