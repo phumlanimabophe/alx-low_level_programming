@@ -2,24 +2,24 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main(void)
+void print_number(int n)
 {
-    const char charset[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    const int length = 10;
-    char *password = malloc(length + 1);
+    int divisor = 1;
 
-    srand(time(NULL));
-
-    for (int i = 0; i < length; i++) {
-        int index = rand() % (sizeof(charset) - 1);
-        password[i] = charset[index];
+    if (n < 0)
+    {
+        _putchar('-');
+        n = -n;
     }
 
-    password[length] = '\0';
+    while (n / divisor >= 10)
+    {
+        divisor *= 10;
+    }
 
-    printf("%s\n", password);
-
-    free(password);
-
-    return 0;
+    while (divisor != 0)
+    {
+        _putchar((n / divisor) % 10 + '0');
+        divisor /= 10;
+    }
 }
