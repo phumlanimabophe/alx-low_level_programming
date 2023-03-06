@@ -5,9 +5,10 @@
 #include "main.h"
 
 /**
- * print_diagsums - prints ...
+ * print_diagsums - prints the sums of diagonals .
  * @a: pointer to an array
  * @size: size of the matrix
+ *
  * Return: void
  */
 
@@ -29,4 +30,3 @@ void print_diagsums(int *a, int size)
 	}
 	printf("%d, %d\n", c, d);
 }
-
