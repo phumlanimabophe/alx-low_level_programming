@@ -7,29 +7,34 @@
 
 /**
  * _strspn - gets the length of a prefix substring.
- * @s: input string
+ * @s: string to check
  * @accept: bytes to compare
- *
- * Return: the number of bytes in the initial segment of s which consist only of bytes from accept
+ * Return: number of bytes in the initial segment of s which
+ *         consist only of bytes from accept.
  */
 unsigned int _strspn(char *s, char *accept)
 {
-	unsigned int count = 0;
-	int i, j;
+    unsigned int count = 0;
+    int found;
 
-	for (i = 0; s[i] != '\0'; i++) // loop through each character in s
-	{
-		for (j = 0; accept[j] != '\0'; j++) // loop through each character in accept
-		{
-			if (s[i] == accept[j])
-			{
-				count++; // increment count if byte is found in accept
-				break; // break out of inner loop to avoid unnecessary comparisons
-			}
-		}
-		if (accept[j] == '\0') // if s[i] is not found in accept, break out of outer loop
-			break;
-	}
+    while (*s != '\0')
+    {
+        found = 0;
+        while (*accept != '\0')
+        {
+            if (*s == *accept)
+            {
+                count++;
+                found = 1;
+                break;
+            }
+            accept++;
+        }
+        if (found == 0)
+            break;
 
-	return (count); // return the count of matching bytes
+        s++;
+    }
+
+    return count;
 }
