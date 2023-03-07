@@ -3,7 +3,6 @@
  */
 
 #include "main.h"
-#include <stdio.h>
 
 /**
  * print_diagsums - prints the sums of diagonals .
@@ -15,19 +14,19 @@
 
 void print_diagsums(int *a, int size)
 {
-	int i, j;
-	int c = 0;
-	int d = 0;
+    int sum1 = 0, sum2 = 0;
+    int i, j;
 
-	for (i = 0; i < size; i++)
-	{
-		c = c + *(a + i * sizeof(int));
-	}
-
-	for (j = 0; j < size; j++)
-
-	{
-		d = d + *(a + (size * j) + (size - j - 1));
-	}
-	printf("%d, %d\n", c, d);
+    for (i = 0; i < size; i++) {
+        sum1 += *(a + i * size + i);
+        sum2 += *(a + i * size + (size - i - 1));
+    }
+    
+    putchar(sum1 / 10 + '0');
+    putchar(sum1 % 10 + '0');
+    putchar(',');
+    putchar(' ');
+    putchar(sum2 / 10 + '0');
+    putchar(sum2 % 10 + '0');
+    putchar('\n');
 }
