@@ -11,7 +11,6 @@
  * @accept: character
  * Return: i.
  */
-
 unsigned int _strspn(char *s, char *accept)
 {
 int count;
