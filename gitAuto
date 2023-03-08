@@ -1,0 +1,6 @@
+#!/bin/bash
+git add .
+git commit -m "m"
+git push origin main
+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
+
