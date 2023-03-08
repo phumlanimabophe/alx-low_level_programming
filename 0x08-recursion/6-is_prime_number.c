@@ -1,23 +1,37 @@
 /*
- * File: 0-memset.c
+ * File: 6
  */
 
 #include "main.h"
 
 /**
- * _memset - fills memory with a constant byte .
- * @s: pass allocated memory - array of characters .
- * @b: pass char bytes .
- * @n: pass number of spaces to fill .
- * Return: pointer to memory area s
+ * is_prime_number - Checks whether a given number is prime.
+ * @n: The number to check.
+ *
+ * Return: 1 if n is prime, 0 otherwise.
  */
-char *_memset(char *s, char b, unsigned int n)
+int is_prime_number(int n)
 {
-	unsigned int i;
+    /* Base case: n is less than 2, so it's not prime */
+    if (n < 2)
+        return 0;
 
-	for (i = 0; i < n; i++)
-	{
-		*(s + i) = b;
-	}
-	return (s);
+    /* Base case: n is 2 or 3, so it's prime */
+    if (n == 2 || n == 3)
+        return 1;
+
+    /* Base case: n is even, so it's not prime */
+    if (n % 2 == 0)
+        return 0;
+
+    /* Recursive case: check odd divisors up to the square root of n */
+    int i;
+    for (i = 3; i * i <= n; i += 2)
+    {
+        if (n % i == 0)
+            return 0;
+    }
+
+    return 1;
 }
+
