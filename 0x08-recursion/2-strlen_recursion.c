@@ -5,19 +5,19 @@
 #include "main.h"
 
 /**
- * _memset - fills memory with a constant byte .
- * @s: pass allocated memory - array of characters .
- * @b: pass char bytes .
- * @n: pass number of spaces to fill .
- * Return: pointer to memory area s
+ * _strlen_recursion - a function that returns the length of a string.
+ * @s: The string.
+ * Return: length
  */
-char *_memset(char *s, char b, unsigned int n)
+int _strlen_recursion(char *s)
 {
-	unsigned int i;
+	int length = 0;
 
-	for (i = 0; i < n; i++)
-	{
-		*(s + i) = b;
-	}
-	return (s);
+	if (*s == 0)
+		return (0);
+
+	length = _strlen_recursion(s + 1);
+
+	return (length + 1);
 }
+

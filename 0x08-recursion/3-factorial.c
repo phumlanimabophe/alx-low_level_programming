@@ -5,19 +5,22 @@
 #include "main.h"
 
 /**
- * _memset - fills memory with a constant byte .
- * @s: pass allocated memory - array of characters .
- * @b: pass char bytes .
- * @n: pass number of spaces to fill .
- * Return: pointer to memory area s
+ * factorial - compute the factorial of a given number.
+ * @n: the number
+ * Return: factorial number
  */
-char *_memset(char *s, char b, unsigned int n)
+int factorial(int n)
 {
-	unsigned int i;
+	int fac = 1;
 
-	for (i = 0; i < n; i++)
-	{
-		*(s + i) = b;
-	}
-	return (s);
+	if (n < 0)
+		return (-1);
+
+	else if (!n)
+		return (1);
+
+	fac = factorial(n - 1);
+
+	return (fac * n);
 }
+

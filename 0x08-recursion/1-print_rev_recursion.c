@@ -5,19 +5,15 @@
 #include "main.h"
 
 /**
- * _memset - fills memory with a constant byte .
- * @s: pass allocated memory - array of characters .
- * @b: pass char bytes .
- * @n: pass number of spaces to fill .
- * Return: pointer to memory area s
+ * _print_rev_recursion - print revesed string .
+ * @s: string to print .
  */
-char *_memset(char *s, char b, unsigned int n)
+void _print_rev_recursion(char *s)
 {
-	unsigned int i;
+	if (!*s)
+		return;
 
-	for (i = 0; i < n; i++)
-	{
-		*(s + i) = b;
-	}
-	return (s);
+	_print_rev_recursion(s + 1);
+	_putchar(*s);
 }
+

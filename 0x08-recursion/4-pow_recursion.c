@@ -5,19 +5,23 @@
 #include "main.h"
 
 /**
- * _memset - fills memory with a constant byte .
- * @s: pass allocated memory - array of characters .
- * @b: pass char bytes .
- * @n: pass number of spaces to fill .
- * Return: pointer to memory area s
+ * _pow_recursion - unction that returns value of x raised to the power of y.
+ * @x: first integer
+ * @y: second integer
+ * Return: Result
  */
-char *_memset(char *s, char b, unsigned int n)
+int _pow_recursion(int x, int y)
 {
-	unsigned int i;
+	int pw = 1;
 
-	for (i = 0; i < n; i++)
-	{
-		*(s + i) = b;
-	}
-	return (s);
+	if (y < 0)
+		return (-1);
+
+	if (!y)
+		return (1);
+
+	pw = _pow_recursion(x, y - 1);
+
+	return (pw * x);
 }
+
