@@ -3,14 +3,32 @@
  */
 
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
- * reset_to_98 - resets value of pointer to 98
- * @n: pointer to reset to 98
+ * main - Prints the multiplication of two numbers, followed by a new line.
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
  *
- * Return: void
+ * Return: If a ret - 0.
+ *         If b ret - 1.
  */
-void reset_to_98(int *n)
+int main(int argc, char *argv[])
 {
-	*n = 98;
+	int num1, num2, prod;
+
+	if (argc != 3)
+	{
+		printf("Error\n");
+		return (1);
+	}
+
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[2]);
+	prod = num1 * num2;
+
+	printf("%d\n", prod);
+
+	return (0);
 }

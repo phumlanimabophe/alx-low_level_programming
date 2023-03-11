@@ -1,16 +1,20 @@
 /*
- * File: 0-reset_to_98.c
+ * File: 1
  */
 
 #include "main.h"
+#include <stdio.h>
 
 /**
- * reset_to_98 - resets value of pointer to 98
- * @n: pointer to reset to 98
+ * main - Prints the number of arguments passed to it.
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
  *
- * Return: void
+ * Return: Always 0.
  */
-void reset_to_98(int *n)
+int main(int argc, char __attribute__((__unused__)) *argv[])
 {
-	*n = 98;
+	printf("%d\n", argc - 1);
+
+	return (0);
 }
