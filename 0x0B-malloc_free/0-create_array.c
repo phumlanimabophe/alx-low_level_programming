@@ -7,19 +7,27 @@
 #include <stdlib.h>
 
 /**
- * main - Prints the addition of positive numbers,
- *        followed by \n.
- * @argc: The number of arguments passed to the program.
- * @argv: An array of pointers to the arguments.
- * Return: If one of the numbers contains symbols that are non-digits - 1.
- *         Otherwise - 0.
+ * create_array - Entry point
+ *@size: size of the array
+ *@c: character
+ * Return: a pointer to the array, or NULL if it fails
  */
+char *create_array(unsigned int size, char c)
+{
 
-char *create_array(unsigned int size, char c){
-    if (size==0){
-        return NULL;
-    }
-    char* array = (int*) malloc(size * sizeof(int));
-    return array;
+	char *array = NULL;
+	unsigned int i;
+
+	if (size == 0)
+		return (NULL);
+	if (size != 0)
+	{
+		array = (char *)malloc(size * sizeof(char));
+		if (array != NULL)
+		{
+			for (i = 0; i < size; i++)
+				array[i] = c;
+		}
+	}
+	return (array);
 }
-
