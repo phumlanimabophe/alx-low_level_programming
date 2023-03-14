@@ -7,32 +7,43 @@
 #include <stdlib.h>
 
 /**
- * main - Prints the addition of positive numbers,
- *        followed by \n.
- * @argc: The number of arguments passed to the program.
- * @argv: An array of pointers to the arguments.
- * Return: If one of the numbers contains symbols that are non-digits - 1.
- *         Otherwise - 0.
+ * alloc_grid - Allocate a 2D grid of integers
+ * @width: the number of columns
+ * @height: the number of rows
+ *
+ * Return: a pointer to the newly-allocated grid, or NULL on failure
  */
-int main(int argc, char *argv[])
+int **alloc_grid(int width, int height)
 {
-	int num, digit, sum = 0;
+	int **grid;
+	int row, col;
 
-	for (num = 1; num < argc; num++)
-	{
-		for (digit = 0; argv[num][digit]; digit++)
-		{
-			if (argv[num][digit] < '0' || argv[num][digit] > '9')
-			{
-				printf("Error\n");
-				return (1);
-			}
+	if (width <= 0 || height <= 0)
+		return NULL;
+
+	/* Allocate memory for the grid */
+	grid = malloc(height * sizeof(int *));
+	if (grid == NULL)
+		return NULL;
+
+	/* Allocate memory for each row */
+	for (row = 0; row < height; row++) {
+		grid[row] = malloc(width * sizeof(int));
+		if (grid[row] == NULL) {
+			/* Free previously-allocated rows */
+			for (col = 0; col < row; col++)
+				free(grid[col]);
+			free(grid);
+			return NULL;
 		}
-
-		sum += atoi(argv[num]);
 	}
 
-	printf("%d\n", sum);
+	/* Initialize each element to zero */
+	for (row = 0; row < height; row++) {
+		for (col = 0; col < width; col++) {
+			grid[row][col] = 0;
+		}
+	}
 
-	return (0);
+	return grid;
 }
