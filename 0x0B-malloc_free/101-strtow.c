@@ -7,32 +7,57 @@
 #include <stdlib.h>
 
 /**
- * main - Prints the addition of positive numbers,
- *        followed by \n.
- * @argc: The number of arguments passed to the program.
- * @argv: An array of pointers to the arguments.
- * Return: If one of the numbers contains symbols that are non-digits - 1.
- *         Otherwise - 0.
- */
-int main(int argc, char *argv[])
+
+strtow - splits a string into words
+
+@str: input string
+
+Return: pointer to an array of strings or NULL if failure
+*/
+char **strtow(char *str)
 {
-	int num, digit, sum = 0;
+int i, word_count = 0, j = 0, k, word_len, m;
+char **p, *word;
 
-	for (num = 1; num < argc; num++)
-	{
-		for (digit = 0; argv[num][digit]; digit++)
-		{
-			if (argv[num][digit] < '0' || argv[num][digit] > '9')
-			{
-				printf("Error\n");
-				return (1);
-			}
-		}
+if (str == NULL || *str == '\0')
+return (NULL);
 
-		sum += atoi(argv[num]);
-	}
+for (i = 0; str[i] != '\0'; i++)
+{
+if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] == '\0'))
+word_count++;
+}
 
-	printf("%d\n", sum);
+p = (char **)malloc((word_count + 1) * sizeof(char *));
+if (p == NULL)
+return (NULL);
 
-	return (0);
+for (i = 0; str[i] != '\0' && j < word_count; i++)
+{
+if (str[i] != ' ')
+{
+word_len = 0;
+for (k = i; str[k] != ' ' && str[k] != '\0'; k++)
+word_len++;
+
+scss
+Copy code
+ 	word = (char *)malloc((word_len + 1) * sizeof(char));
+ 	if (word == NULL)
+ 	{
+ 		for (k = 0; k < j; k++)
+ 			free(p[k]);
+ 		free(p);
+ 		return (NULL);
+ 	}
+
+ 	for (m = 0; m < word_len; m++, i++)
+ 		word[m] = str[i];
+ 	word[m] = '\0';
+ 	p[j++] = word;
+ }
+}
+
+p[j] = NULL;
+return (p);
 }
