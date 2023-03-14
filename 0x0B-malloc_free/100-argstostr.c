@@ -7,32 +7,47 @@
 #include <stdlib.h>
 
 /**
- * main - Prints the addition of positive numbers,
- *        followed by \n.
- * @argc: The number of arguments passed to the program.
- * @argv: An array of pointers to the arguments.
- * Return: If one of the numbers contains symbols that are non-digits - 1.
- *         Otherwise - 0.
+ * argstostr - Concatenates all the arguments of the program
+ * @ac: Number of arguments
+ * @av: Arguments
+ *
+ * Return: A pointer to a new string, or NULL if it fails
  */
-int main(int argc, char *argv[])
+char *argstostr(int ac, char **av)
 {
-	int num, digit, sum = 0;
+	int i, j, k, len;
+	char *str;
 
-	for (num = 1; num < argc; num++)
+	if (ac == 0 || av == NULL)
+		return (NULL);
+
+	/* Compute the length of the new string */
+	len = 0;
+	for (i = 0; i < ac; i++)
 	{
-		for (digit = 0; argv[num][digit]; digit++)
-		{
-			if (argv[num][digit] < '0' || argv[num][digit] > '9')
-			{
-				printf("Error\n");
-				return (1);
-			}
-		}
-
-		sum += atoi(argv[num]);
+		for (j = 0; av[i][j] != '\0'; j++)
+			len++;
+		len++; /* For the newline character */
 	}
 
-	printf("%d\n", sum);
+	/* Allocate memory for the new string */
+	str = (char *) malloc(len * sizeof(char));
+	if (str == NULL)
+		return (NULL);
 
-	return (0);
+	/* Copy the arguments into the new string */
+	k = 0;
+	for (i = 0; i < ac; i++)
+	{
+		for (j = 0; av[i][j] != '\0'; j++)
+		{
+			str[k] = av[i][j];
+			k++;
+		}
+		str[k] = '\n';
+		k++;
+	}
+	str[k] = '\0';
+
+	return (str);
 }
