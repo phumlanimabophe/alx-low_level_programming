@@ -1,38 +1,33 @@
-/*
- * File: 0-reset_to_98.c
- */
-
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 /**
- * main - Prints the addition of positive numbers,
- *        followed by \n.
- * @argc: The number of arguments passed to the program.
- * @argv: An array of pointers to the arguments.
- * Return: If one of the numbers contains symbols that are non-digits - 1.
- *         Otherwise - 0.
+ * _strdup - Entry point
+ *@str: string we need to duplicate
+ *
+ * Return: a pointer to the duplicated string or NULL
  */
-int main(int argc, char *argv[])
+
+char *_strdup(char *str)
 {
-	int num, digit, sum = 0;
+	char *strnew = NULL;
+	unsigned int i;
+	int n;
 
-	for (num = 1; num < argc; num++)
+	if (str == NULL)
+		return (NULL);
+	for (n = 0; str[n] != '\0'; n++)
+		;
+	strnew = (char *)malloc(n + 1 * sizeof(char));
+	if (strnew != NULL)
 	{
-		for (digit = 0; argv[num][digit]; digit++)
-		{
-			if (argv[num][digit] < '0' || argv[num][digit] > '9')
-			{
-				printf("Error\n");
-				return (1);
-			}
-		}
-
-		sum += atoi(argv[num]);
+		for (i = 0; str[i] != '\0'; i++)
+			strnew[i] = str[i];
+	} else
+	{
+		return (NULL);
 	}
-
-	printf("%d\n", sum);
-
-	return (0);
+	strnew[i] = '\0';
+	return (strnew);
 }
