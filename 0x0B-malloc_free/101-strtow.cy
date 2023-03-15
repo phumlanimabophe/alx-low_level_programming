@@ -4,61 +4,64 @@
 
 #include "main.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 /**
- *
- *strtow - splits a string into words
- *
- *@str: input string
- *
- *Return: pointer to an array of strings or NULL if failure 
+ * wrdcnt - counts the number of words in a string
+ * @s: string
+ * Return: int of number of words
  */
+int wcount(char *s)
+{
+	int i, n = 0;
 
+	for (i = 0; s[i]; i++)
+		n += s[i] != ' ' && (i == 0 || s[i - 1] == ' ');
+
+	return (n);
+}
+
+/**
+ * strtow - splits a string into words
+ * @str: string
+ * Return: pointer to an array of strings
+ */
 char **strtow(char *str)
 {
-int i, word_count = 0, j = 0, k, word_len, m;
-char **p, *word;
+	int i, j, k, l, n = 0, ch = 0;
+	char **x;
 
-if (str == NULL || *str == '\0')
-return (NULL);
-
-for (i = 0; str[i] != '\0'; i++)
-{
-if (str[i] != ' ' && (str[i + 1] == ' ' || str[i + 1] == '\0'))
-word_count++;
-}
-
-p = (char **)malloc((word_count + 1) * sizeof(char *));
-if (p == NULL)
-return (NULL);
-
-for (i = 0; str[i] != '\0' && j < word_count; i++)
-{
-if (str[i] != ' ')
-{
-word_len = 0;
-for (k = i; str[k] != ' ' && str[k] != '\0'; k++)
-word_len++;
-
-scss
-Copy code
- 	word = (char *)malloc((word_len + 1) * sizeof(char));
- 	if (word == NULL)
- 	{
- 		for (k = 0; k < j; k++)
- 			free(p[k]);
- 		free(p);
- 		return (NULL);
- 	}
-
- 	for (m = 0; m < word_len; m++, i++)
- 		word[m] = str[i];
- 	word[m] = '\0';
- 	p[j++] = word;
- }
-}
-
-p[j] = NULL;
-return (p);
+	if (!str || !*str || (n = wcount(str)) == 1)
+		return (NULL);
+	
+	x = malloc(n * sizeof(char *));
+	if (!x)
+		return (NULL);
+	
+	x[n - 1] = NULL;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
+		{
+			for (j = 1; str[i + j] != ' ' && str[i + j]; j++)
+				;
+			j++;
+			x[ch] = malloc(j * sizeof(char));
+			if (!x[ch])
+			{
+				for (k = 0; k < ch; k++)
+					free(x[k]);
+				free(x[n - 1]);
+				free(x);
+				return (NULL);
+			}
+			for (l = 0; l < j - 1; l++)
+				x[ch][l] = str[i + l];
+			x[ch++][l] = '\0';
+			i += j;
+		}
+		else
+			i++;
+	}
+	return (x);
 }
