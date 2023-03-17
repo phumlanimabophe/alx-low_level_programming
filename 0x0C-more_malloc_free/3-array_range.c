@@ -1,5 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
+
 /*
  * Creates an array of integers from min to max (inclusive).
  * If min is greater than max, returns NULL.
