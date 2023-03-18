@@ -3,43 +3,45 @@
 #include <stdlib.h>
 
 /**
- * _bzero - set all the bytes to 0.
- * @dst: pointer to propagate.
- * @size: of the memory per-byte.
+ * string_nconcat - concatenates two strings, using up to n bytes from s2
+ * @s1: first string to concatenate
+ * @s2: second string to concatenate, using up to n bytes
+ * @n: maximum number of bytes of s2 to concatenate
  *
- * Return: pointer to memory area dst.
+ * Return: pointer to the resulting string (s1 + s2)
+ *         or NULL if memory allocation fails
  */
-void *_bzero(void *dst, unsigned int size)
+char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-    char *d = dst;
+	char *result;
+	unsigned int s1_len = 0, s2_len = 0, i, j;
 
-    do
-        *d++ = 0;
-    while (--size != 0);
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
 
-    return dst;
-}
+	while (s1[s1_len])
+		s1_len++;
+	while (s2[s2_len])
+		s2_len++;
 
-/**
- * _calloc - create and array using calloc
- * @nmemb: number elements.
- * @size: size of the type.
- *
- * Return: pointer to the memory.
- */
-void *_calloc(unsigned int nmemb, unsigned int size)
-{
-    void *ptr;
+	if (n >= s2_len)
+		n = s2_len;
 
-    if (!nmemb || !size)
-        return NULL;
+	result = malloc((s1_len + n + 1) * sizeof(char));
 
-    ptr = malloc(nmemb * size);
+	if (result == NULL)
+		return (NULL);
 
-    if (!ptr)
-        return NULL;
+	for (i = 0; i < s1_len; i++)
+		result[i] = s1[i];
 
-    _bzero(ptr, nmemb * size);
-    return ptr;
+	for (j = 0; j < n; j++)
+		result[i + j] = s2[j];
+
+	result[i + j] = '\0';
+
+	return (result);
 }
 
