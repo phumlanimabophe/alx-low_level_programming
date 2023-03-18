@@ -1,23 +1,47 @@
 #include "main.h"
 #include <stdlib.h>
-/*
- * Allocates memory for an array of nmemb elements, each of size bytes.
- * The memory is initialized to zero.
- * If nmemb or size is zero, returns NULL.
- * Returns a pointer to the allocated memory, or NULL on error.
+#include "main.h"
+#include <stdlib.h>
+#include <stdlib.h>
+
+/**
+ * _bzero - set all the bytes to 0.
+ * @dst: pointer to propagate.
+ * @size: of the memory per-byte.
+ *
+ * Return: pointer to memory area dst.
  */
-void *allocate_zeroed_memory(unsigned int nmemb, unsigned int size)
+void *_bzero(void *dst, unsigned int size)
 {
-    if (nmemb == 0 || size == 0) {
-        return NULL;
-    }
+    char *d = dst;
 
-    unsigned int total_size = nmemb * size;
-    char *mem = malloc(total_size);
-    if (mem == NULL) {
-        return NULL;
-    }
+    do
+        *d++ = 0;
+    while (--size != 0);
 
-    memset(mem, 0, total_size);
-    return mem;
+    return dst;
 }
+
+/**
+ * _calloc - create and array using calloc
+ * @nmemb: number elements.
+ * @size: size of the type.
+ *
+ * Return: pointer to the memory.
+ */
+void *_calloc(unsigned int nmemb, unsigned int size)
+{
+    void *ptr;
+
+    if (!nmemb || !size)
+        return NULL;
+
+    ptr = malloc(nmemb * size);
+
+    if (!ptr)
+        return NULL;
+
+    _bzero(ptr, nmemb * size);
+    return ptr;
+}
+
