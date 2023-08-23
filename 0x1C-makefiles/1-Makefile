@@ -1,0 +1,13 @@
+# Compiler
+CC = gcc
+
+# Source files
+SRC = main.c school.c
+
+# Rule to build the executable
+all:
+	$(CC) $(SRC) -o school
+
+# Rule to clean up temporary files and the executable
+clean:
+	rm -f school
